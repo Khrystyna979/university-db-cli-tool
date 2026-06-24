@@ -1,7 +1,7 @@
 import sqlite3
 import csv
 
-QUERY_FILE = 'query_7.sql'
+QUERY_FILE = 'sql_queries/query_7.sql'
 CSV_FILE = 'result.csv'
 
 def execute_query(file, params=()):
