@@ -120,15 +120,15 @@ poetry run python CRUD_helper.py --help
 ```bash
 poetry run python CRUD_helper.py --action list -m Student
 ```
-Створити нового викладача:
+- Створити нового викладача:
 ```bash
 poetry run python CRUD_helper.py --action create -m Teacher --name 'Khrystyna Oliinyk'
 ```
-Оновити ім'я викладача за його ID
+- Оновити ім'я викладача за його ID
 ```bash
 poetry run python CRUD_helper.py --action update -m Teacher --id 3 --name 'Andrew Bezos'
 ```
-Видалити запис про групу
+- Видалити запис про групу
 ```bash
 poetry run python CRUD_helper.py --action remove -m Group --id 1
 ```
