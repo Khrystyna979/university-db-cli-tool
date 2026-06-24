@@ -1,0 +1,24 @@
+[project]
+name = "university-db-cli-tool"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+requires-python = ">=3.13"
+dependencies = [
+    "faker (>=40.23.0,<41.0.0)",
+    "sqlalchemy (>=2.0.51,<3.0.0)",
+    "alembic (>=1.18.4,<2.0.0)",
+    "psycopg2-binary (>=2.9.12,<3.0.0)",
+    "argparse (>=1.4.0,<2.0.0)",
+    "dotenv (>=0.9.9,<0.10.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false
