@@ -1,4 +1,4 @@
-from datetime import datetime, date
+from datetime import date
 from sqlalchemy import Integer, String, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship, DeclarativeBase
 from sqlalchemy.sql.sqltypes import Date
@@ -54,7 +54,7 @@ class Grade(Base):
     student_id: Mapped[int] = mapped_column(Integer, ForeignKey('students.id', ondelete='CASCADE'))
     discipline_id: Mapped[int] = mapped_column(Integer, ForeignKey('disciplines.id', ondelete='CASCADE'))
     grade: Mapped[int] = mapped_column(Integer)
-    created_at: Mapped[date] = mapped_column(Date, default=datetime.now().date)
+    created_at: Mapped[date] = mapped_column(Date, default=date.today)
     discipline: Mapped['Discipline'] = relationship(back_populates='grades')
     student: Mapped['Student'] = relationship(back_populates='grades')
 
