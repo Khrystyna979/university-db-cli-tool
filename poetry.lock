@@ -21,18 +21,6 @@ typing-extensions = ">=4.12"
 tz = ["tzdata"]
 
 [[package]]
-name = "argparse"
-version = "1.4.0"
-description = "Python command-line parsing library"
-optional = false
-python-versions = "*"
-groups = ["main"]
-files = [
-    {file = "argparse-1.4.0-py2.py3-none-any.whl", hash = "sha256:c31647edb69fd3d465a847ea3157d37bed1f95f19760b11a47aa91c04b666314"},
-    {file = "argparse-1.4.0.tar.gz", hash = "sha256:62b089a55be1d8949cd2bc7e0df0bddb9e028faefc8c32038cc84862aefdd6e4"},
-]
-
-[[package]]
 name = "dotenv"
 version = "0.9.9"
 description = "Deprecated package"
@@ -494,4 +482,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "650d1e9ed399b1c470d72a1143f0439defc02f1cd23c3ca260b4ca37e5b2c83c"
+content-hash = "b42b826d039fef7d96072aecc36d05996adb406ea6771b4e5e8d1536b5614cb6"

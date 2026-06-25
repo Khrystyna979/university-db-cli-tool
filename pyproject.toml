@@ -1,9 +1,9 @@
 [project]
 name = "university-db-cli-tool"
 version = "0.1.0"
-description = ""
+description = "CLI application to interact with university database using SQLAlchemy and Alembic"
 authors = [
-    {name = "Your Name",email = "you@example.com"}
+    {name = "Khrystyna Oliinyk",email = "khrystynaa.ol@gmail.com"}
 ]
 requires-python = ">=3.13"
 dependencies = [
@@ -11,8 +11,7 @@ dependencies = [
     "sqlalchemy (>=2.0.51,<3.0.0)",
     "alembic (>=1.18.4,<2.0.0)",
     "psycopg2-binary (>=2.9.12,<3.0.0)",
-    "argparse (>=1.4.0,<2.0.0)",
-    "dotenv (>=0.9.9,<0.10.0)"
+    "python-dotenv (>=1.2.2,<2.0.0)"
 ]
 
 
