@@ -5,8 +5,6 @@ from sqlalchemy import select
 import argparse
 import textwrap
 
-session: SQLSession = Session()
-
 BANNER = """
    █████████  ███████████   █████  █████ ██████████      █████   █████ ██████████ █████       ███████████  ██████████ ███████████  
   ███░░░░░███░░███░░░░░███ ░░███  ░░███ ░░███░░░░███    ░░███   ░░███ ░░███░░░░░█░░███       ░░███░░░░░███░░███░░░░░█░░███░░░░░███ 
@@ -44,7 +42,7 @@ def parse_args():
   
   return parser.parse_args()
 
-def update_obj_name(model_name, name, id):
+def update_obj_name(session: SQLSession, model_name, name, id):
   obj = session.get(model_name, id)
   if obj:
     if model_name.__name__ == 'Group':
@@ -63,7 +61,7 @@ def update_obj_name(model_name, name, id):
   else:
     return f'{model_name.__name__} with id={id} not found'
 
-def delete_obj(id, model_name):
+def delete_obj(session: SQLSession, id, model_name):
   obj = session.get(model_name, id)
   if obj:
     session.delete(obj)
@@ -72,7 +70,7 @@ def delete_obj(id, model_name):
   else:
     return f"{model_name.__name__} with id={id} not found"
   
-def main(args):
+def main(args, session: SQLSession):
   if args.action == 'create':
     match args.model:
       case 'Group':
@@ -131,13 +129,13 @@ def main(args):
   elif args.action == 'update':
     match args.model:
       case 'Group':
-        print(update_obj_name(Group, args.name, args.id))
+        print(update_obj_name(session, Group, args.name, args.id))
       case 'Student':
-        print(update_obj_name(Student, args.name, args.id))
+        print(update_obj_name(session, Student, args.name, args.id))
       case 'Teacher':
-        print(update_obj_name(Teacher, args.name, args.id))
+        print(update_obj_name(session, Teacher, args.name, args.id))
       case 'Discipline':
-        print(update_obj_name(Discipline, args.name, args.id))
+        print(update_obj_name(session, Discipline, args.name, args.id))
       case 'Grade':
         obj = session.get(Grade, args.id)
         if obj:
@@ -149,16 +147,17 @@ def main(args):
   elif args.action == 'remove':
     match args.model:
       case 'Group':
-        print(delete_obj(args.id, Group))
+        print(delete_obj(session, args.id, Group))
       case 'Student':
-        print(delete_obj(args.id, Student))
+        print(delete_obj(session, args.id, Student))
       case 'Teacher':
-        print(delete_obj(args.id, Teacher))
+        print(delete_obj(session, args.id, Teacher))
       case 'Discipline':
-        print(delete_obj(args.id, Discipline))
+        print(delete_obj(session, args.id, Discipline))
       case 'Grade':
-        print(delete_obj(args.id, Grade))
+        print(delete_obj(session, args.id, Grade))
 
 if __name__ == "__main__":
   args = parse_args()
-  main(args)
+  with Session() as session:
+    main(args, session)
