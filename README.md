@@ -59,13 +59,14 @@ university-db-cli-tool/
 │   └── ER-diagram.png             # Схема зв'язків бази даних
 │
 ├── university_cli/                # SQLAlchemy ORM & CLI
-│   ├── alembic/                   
+│   ├── alembic/     
+│   ├── alembic.ini              
 │   ├── db_config.py               
 │   ├── models.py                  # Моделі SQLAlchemy 2.0 
 │   ├── my_select.py               # Запити через SQLAlchemy ORM
 │   ├── seed_orm.py                # Наповнення PostgreSQL через сесії ORM
 │   ├── .env.example
-│   ├── docker-compose.yml
+│   ├── docker-compose.yaml
 │   └── CRUD_helper.py             # CLI утиліта 
 │
 └── pyproject.toml                 
@@ -138,14 +139,40 @@ poetry run python CRUD_helper.py --action remove -m Group --id 1
 ```bash
 cd raw_sql_analytics
 ```
-- Запусти скрипт створення бази й генерації даних
+- Запусти скрипт створення бази
+```bash
+poetry run python create_db.py
+```
+- Запусти скрипт генерації випадкових даних
 ```bash
 poetry run python seed_raw.py
 ```
-- Для запуску та перевірки SQL-запитів використовуй
+- Кроки для запуску будь-якого запиту:  
+1. Відкрийте файл `raw_sql_analytics/execute_query.py`
+2. У рядку **4** змініть назву файлу на той запит, який хочете перевірити (наприклад, `query_1.sql`, `query_7.sql` тощо):
+```python
+   QUERY_FILE = 'sql_queries/query_7.sql'  # Вкажіть тут потрібний файл
+```
+* Якщо запит потребує передачі параметрів (як-от ID студента чи групи), передайте їх кортежем у функцію execute_query в самому низу файлу:
+```python
+   save_to_file(execute_query(QUERY_FILE, (5, 2)), CSV_FILE)
+```
+- Перейдіть у папку модуля та виконайте команду в терміналі:
 ```bash
+cd raw_sql_analytics
 poetry run python execute_query.py
 ```
+- Результати виконання запиту відобразяться в терміналі та збережуться у файл result.csv
+
+---
+
+## 📸 Скріншоти
+![ER-діаграма](raw_sql_analytics/ER-diagram.png)
+![help option](screenshots/help-option.png)
+![Список студентів](screenshots/student-list.png)
+![Створення вчителя](screenshots/teacher-creation.png)
+![Оновлення вчителя](screenshots/teacher-update.png)
+![Видалення вчителя](screenshots/teacher-delete.png)
 
 ---
 
